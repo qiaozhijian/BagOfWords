@@ -76,7 +76,8 @@ void getSortedImages(const string img_path, vector<string> &img_paths) {
         !boost::filesystem::is_directory(img_dir))
         throw std::runtime_error("[Dataset] Invalid directory");
 
-    boost::regex expression("^[^0-9]*([0-9]+\\.?+[0-9]*)[^0-9]*\\.[a-z]{3,4}$");
+    //https://blog.csdn.net/stephen_yin/article/details/6731545
+    boost::regex expression("^[^0-9]*([0-9]*\\.?+[0-9]*)[^0-9]*\\.[a-z]{3,4}$");
     boost::cmatch what;
     auto filename_filter = [&expression, &what](const std::string &s) {
         return !boost::regex_match(s.c_str(), what, expression);
